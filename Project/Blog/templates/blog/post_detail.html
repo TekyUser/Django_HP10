@@ -1,7 +1,24 @@
 {% extends "pages/base.html" %}
+
 {% block title %}Post Detail{% endblock %}
+
 {% block content %}
-    <h1>{{ post.title }}</h1>
-    <p>{{ post.body }}</p>
-    <p><em>Published on: {{ post.date }}</em></p>
+    <div class="container mt-5">
+        <div class="text-center mb-4">
+            <h1 class="display-4 font-weight-bold">{{ post.title }}</h1>
+            {% if post.image %}
+                <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid rounded shadow-lg mb-4" style="max-width: 800px; height: auto;" />
+            {% endif %}
+        </div>
+        
+        <div class="card shadow-lg">
+            <div class="card-body">
+                <div class="card-text mb-4">
+                    {{ post.body|safe }}
+                    {% comment %} |safe hiểu code html(h1,p,.........) {% endcomment %}
+                </div>
+                <p class="text-muted"><em>Published on: {{ post.date|date:"F j, Y" }}</em></p>
+            </div>
+        </div>
+    </div>
 {% endblock %}
